@@ -18,5 +18,7 @@ function downvote(id) {
 
 module.exports = {
   create,
-  edit
+  edit,
+  upvote,
+  downvote
 }
