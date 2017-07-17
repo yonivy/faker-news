@@ -9,6 +9,20 @@ function create(content, cb) {
     .then(doc => doc.toObject())
 }
 
+function updateOne(id, operation) {
+  const options = {
+    new: true,
+    runValidators: true
+  }
+
+  if (!operation) {
+    return Promise.reject(new Error(`No update operation was provided`))
+  }
+
+  return Model.findByIdAndUpdate(id, operation, options).lean()
+}
+
 module.exports = {
-  create
+  create,
+  updateOne
 }
