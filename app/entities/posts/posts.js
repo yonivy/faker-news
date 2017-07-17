@@ -1,7 +1,7 @@
 const model = require('./posts.model')
 
 function create(content) {
-  return model.create(content)
+  return model.create({ content })
 }
 
 function edit(id, content) {
@@ -16,9 +16,14 @@ function downvote(id) {
   return model.incrementOne(id, 'downvotes')
 }
 
+function top(page, size) {
+  return model.pageByScore(page, size)
+}
+
 module.exports = {
   create,
   edit,
   upvote,
-  downvote
+  downvote,
+  top
 }

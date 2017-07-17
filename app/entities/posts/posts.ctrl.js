@@ -42,6 +42,16 @@ router.post('/:id/downvote', (req, res) => {
         .catch((err) => handleError(res, err, `Can't downvote post ${id}`))
 })
 
+router.get('/top', (req, res) => {
+  const { page, size } = req.query
+
+    posts.top(page, size)
+        .then((results) => {
+            res.status(200).json({ results })
+        })
+        .catch((err) => handleError(res, err, `Can't get top posts`))
+})
+
 function handleError(res, err, msg) {
     const output = {
         status: err.statusCode || 500,
