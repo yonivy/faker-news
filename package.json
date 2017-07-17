@@ -1,0 +1,24 @@
+{
+  "name": "faker-news",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app/index.js",
+    "test": "mocha --recursive ./app/**/*.spec.js"
+  },
+  "author": "Yoni Levy",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongoose": "^4.11.3"
+  },
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^3.4.2",
+    "mockgoose": "^7.3.3"
+  }
+}
