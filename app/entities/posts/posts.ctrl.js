@@ -22,6 +22,26 @@ router.patch('/:id', (req, res) => {
         .catch((err) => handleError(res, err, `Can't edit post ${id}`))
 })
 
+router.post('/:id/upvote', (req, res) => {
+    const id = req.params.id
+
+    posts.upvote(id)
+        .then((doc) => {
+            res.status(200).json(doc)
+        })
+        .catch((err) => handleError(res, err, `Can't upvote post ${id}`))
+})
+
+router.post('/:id/downvote', (req, res) => {
+    const id = req.params.id
+
+    posts.downvote(id)
+        .then((doc) => {
+            res.status(200).json(doc)
+        })
+        .catch((err) => handleError(res, err, `Can't downvote post ${id}`))
+})
+
 function handleError(res, err, msg) {
     const output = {
         status: err.statusCode || 500,

@@ -64,4 +64,40 @@ describe('Posts Model', function () {
         })
     })
   })
+
+  describe('Upvote', () => {
+    it('should upvote an existing post', () => {
+      return model.create('text')
+        .then(post => {
+          post.upvotes.should.equal(0)
+
+          return model.incrementOne(post._id, 'upvotes')
+        })
+        .then(post => {
+          post.upvotes.should.equal(1)
+        })
+    })
+
+    it('should fail to upvote a non existing post', () => {
+      return model.incrementOne('somehash', 'upvotes').should.be.rejectedWith(Error)
+    })
+  })
+
+  describe('Downvote', () => {
+    it('should upvote an existing post', () => {
+      return model.create('text')
+        .then(post => {
+          post.downvotes.should.equal(0)
+
+          return model.incrementOne(post._id, 'downvotes')
+        })
+        .then(post => {
+          post.downvotes.should.equal(1)
+        })
+    })
+
+    it('should fail to upvote a non existing post', () => {
+      return model.incrementOne('somehash', 'downvotes').should.be.rejectedWith(Error)
+    })
+  })
 })

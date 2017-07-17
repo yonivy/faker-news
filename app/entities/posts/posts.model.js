@@ -22,7 +22,15 @@ function updateOne(id, operation) {
   return Model.findByIdAndUpdate(id, operation, options).lean()
 }
 
+function incrementOne(id, field) {
+  const update = { $inc: {} }
+  update.$inc[field] = 1
+
+  return updateOne(id, update)
+}
+
 module.exports = {
   create,
-  updateOne
+  updateOne,
+  incrementOne
 }
